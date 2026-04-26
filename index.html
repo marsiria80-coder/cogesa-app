@@ -725,11 +725,7 @@ async function sqliteMarkPresenzaSynced(p) {
 // ═══════════════════════════════════════════════════════════
 //  UTILS RETE
 // ═══════════════════════════════════════════════════════════
-function isOnline() {
-  // navigator.onLine su Android Chrome + SW può essere inaffidabile
-  // In caso di dubbio consideriamo online e lasciamo fallire Supabase
-  return navigator.onLine !== false;
-}
+function isOnline() { return navigator.onLine; }
 
 function aggiornaBanner() {
   const banner = document.getElementById('banner-rete');
@@ -1575,7 +1571,7 @@ function _mostraInstallBanner() {
   const bar = document.createElement('div');
   bar.id = 'pwa-install-bar';
   bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:9999;font-family:sans-serif;font-size:14px;box-shadow:0 -2px 10px rgba(0,0,0,0.3);';
-  bar.innerHTML = '<span>\u{1F4F2} Installa COGESA come app</span><div style="display:flex;gap:10px"><button onclick="this.closest('#pwa-install-bar').remove();_pwaPrompt=null" style="background:transparent;color:#aaa;border:none;font-size:13px;cursor:pointer">Ignora</button><button onclick="_installaPWA()" style="background:#f39c12;color:#000;border:none;padding:8px 16px;border-radius:6px;font-weight:bold;cursor:pointer">INSTALLA</button></div>';
+  bar.innerHTML = '<span>&#128242; Installa COGESA come app</span><div style="display:flex;gap:10px"><button onclick="document.getElementById(\'pwa-install-bar\').remove();_pwaPrompt=null" style="background:transparent;color:#aaa;border:none;font-size:13px;cursor:pointer">Ignora</button><button onclick="_installaPWA()" style="background:#f39c12;color:#000;border:none;padding:8px 16px;border-radius:6px;font-weight:bold;cursor:pointer">INSTALLA</button></div>';
   document.body.appendChild(bar);
 }
 
