@@ -725,7 +725,11 @@ async function sqliteMarkPresenzaSynced(p) {
 // ═══════════════════════════════════════════════════════════
 //  UTILS RETE
 // ═══════════════════════════════════════════════════════════
-function isOnline() { return navigator.onLine; }
+function isOnline() {
+  // navigator.onLine su Android Chrome + SW può essere inaffidabile
+  // In caso di dubbio consideriamo online e lasciamo fallire Supabase
+  return navigator.onLine !== false;
+}
 
 function aggiornaBanner() {
   const banner = document.getElementById('banner-rete');
